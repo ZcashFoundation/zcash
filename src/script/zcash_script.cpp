@@ -218,6 +218,38 @@ unsigned int zcash_script_legacy_sigop_count(
     }
 }
 
+void zcash_script_transparent_output_address(
+    const unsigned char *txTo,
+    unsigned int txToLen,
+    unsigned int nOut,
+    unsigned char *address,
+    zcash_script_error* err)
+{
+    TxInputStream stream(SER_NETWORK, PROTOCOL_VERSION, txTo, txToLen);
+    CTransaction tx;
+    stream >> tx;
+    if (nOut >= tx.vout.size()) {
+        set_error(err, zcash_script_ERR_TX_INDEX);
+        return;
+    }
+    if (GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION) != txToLen) {
+        set_error(err, zcash_script_ERR_TX_SIZE_MISMATCH);
+        return;
+    }
+
+    const CTxOut& out = tx.vout[nOut];
+    CScript::ScriptType scriptType = out.scriptPubKey.GetType();
+    if (scriptType == CScript::UNKNOWN) {
+        set_error(err, zcash_script_ERR_TX_INVALID_SCRIPT);
+        return;
+    }
+    const uint160 addr = out.scriptPubKey.AddressHash();
+
+    memcpy(address, addr.begin(), addr.size());
+    set_error(err, zcash_script_ERR_OK);
+    return;
+}
+
 unsigned int zcash_script_version()
 {
     // Just use the API version for now

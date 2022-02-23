@@ -41,6 +41,7 @@ typedef enum zcash_script_error_t
     zcash_script_ERR_TX_INDEX,
     zcash_script_ERR_TX_SIZE_MISMATCH,
     zcash_script_ERR_TX_DESERIALIZE,
+    zcash_script_ERR_TX_INVALID_SCRIPT,
 } zcash_script_error;
 
 /** Script verification flags */
@@ -121,6 +122,16 @@ EXPORT_SYMBOL unsigned int zcash_script_legacy_sigop_count_precomputed(
 EXPORT_SYMBOL unsigned int zcash_script_legacy_sigop_count(
     const unsigned char *txTo,
     unsigned int txToLen,
+    zcash_script_error* err);
+
+/// Write the destination address for output nOut of the transaction
+/// txTo in the address buffer, whose length must be 20 bytes.
+/// If not NULL, err will contain an error/success code for the operation.
+EXPORT_SYMBOL void zcash_script_transparent_output_address(
+    const unsigned char *txTo,
+    unsigned int txToLen,
+    unsigned int nOut,
+    unsigned char *address,
     zcash_script_error* err);
 
 /// Returns the current version of the zcash_script library.
