@@ -33,7 +33,7 @@
 extern "C" {
 #endif
 
-#define ZCASH_SCRIPT_API_VER 2
+#define ZCASH_SCRIPT_API_VER 4
 
 typedef enum zcash_script_error_t
 {
@@ -51,6 +51,12 @@ enum
     zcash_script_SCRIPT_FLAGS_VERIFY_P2SH                = (1U << 0), // evaluate P2SH (BIP16) subscripts
     zcash_script_SCRIPT_FLAGS_VERIFY_CHECKLOCKTIMEVERIFY = (1U << 9), // enable CHECKLOCKTIMEVERIFY (BIP65)
 };
+
+/// A Zcash transparent address encoded as 20 bytes.
+typedef struct zcash_script_uint160_t
+{
+    unsigned char value[20];
+} zcash_script_uint160;
 
 /// Deserializes the given transaction and precomputes values to improve
 /// script verification performance.
@@ -124,14 +130,20 @@ EXPORT_SYMBOL unsigned int zcash_script_legacy_sigop_count(
     unsigned int txToLen,
     zcash_script_error* err);
 
-/// Write the destination address for output nOut of the transaction
-/// txTo in the address buffer, whose length must be 20 bytes.
+/// Return the destination address for transparent output nOut of the precomputed transaction
+/// pointed to by preTx.
 /// If not NULL, err will contain an error/success code for the operation.
-EXPORT_SYMBOL void zcash_script_transparent_output_address(
+EXPORT_SYMBOL zcash_script_uint160 zcash_script_transparent_output_address_precomputed(
+    const void* pre_preTx,
+    unsigned int nOut,
+    zcash_script_error* err);
+
+/// Return the destination address for transparent output nOut of the transaction txTo.
+/// If not NULL, err will contain an error/success code for the operation.
+EXPORT_SYMBOL zcash_script_uint160 zcash_script_transparent_output_address(
     const unsigned char *txTo,
     unsigned int txToLen,
     unsigned int nOut,
-    unsigned char *address,
     zcash_script_error* err);
 
 /// Returns the current version of the zcash_script library.
