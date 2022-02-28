@@ -52,6 +52,13 @@ enum
     zcash_script_SCRIPT_FLAGS_VERIFY_CHECKLOCKTIMEVERIFY = (1U << 9), // enable CHECKLOCKTIMEVERIFY (BIP65)
 };
 
+/** Address type enumeration */
+typedef enum zcash_script_type_t
+{
+    zcash_script_TYPE_P2PKH = 1,
+    zcash_script_TYPE_P2SH  = 2,
+} zcash_script_type;
+
 /// A Zcash transparent address encoded as 20 bytes.
 typedef struct zcash_script_uint160_t
 {
@@ -132,18 +139,22 @@ EXPORT_SYMBOL unsigned int zcash_script_legacy_sigop_count(
 
 /// Return the destination address for transparent output nOut of the precomputed transaction
 /// pointed to by preTx.
+/// If not NULL, type will contain the address type.
 /// If not NULL, err will contain an error/success code for the operation.
 EXPORT_SYMBOL zcash_script_uint160 zcash_script_transparent_output_address_precomputed(
     const void* pre_preTx,
     unsigned int nOut,
+    zcash_script_type* type,
     zcash_script_error* err);
 
 /// Return the destination address for transparent output nOut of the transaction txTo.
+/// If not NULL, type will contain the address type.
 /// If not NULL, err will contain an error/success code for the operation.
 EXPORT_SYMBOL zcash_script_uint160 zcash_script_transparent_output_address(
     const unsigned char *txTo,
     unsigned int txToLen,
     unsigned int nOut,
+    zcash_script_type* type,
     zcash_script_error* err);
 
 /// Returns the current version of the zcash_script library.
