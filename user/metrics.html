@@ -4,8 +4,10 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Metrics - The zcashd Book</title>
+
+
         <!-- Custom HTML head -->
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
@@ -16,25 +18,29 @@
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
         <link rel="stylesheet" href="../css/print.css" media="print">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link rel="stylesheet" href="../fonts/fonts.css">
+
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -50,7 +56,7 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
@@ -62,12 +68,14 @@
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
+        <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -75,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">zcashd</a></li><li class="chapter-item expanded "><a href="../user.html"><strong aria-hidden="true">1.</strong> User Documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user/metrics.html" class="active"><strong aria-hidden="true">1.1.</strong> Metrics</a></li></ol></li><li class="chapter-item expanded "><a href="../dev.html"><strong aria-hidden="true">2.</strong> Developer Documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../dev/rust.html"><strong aria-hidden="true">2.1.</strong> Rust in zcashd</a></li></ol></li><li class="chapter-item expanded "><a href="../design.html"><strong aria-hidden="true">3.</strong> Design</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../design/chain-state.html"><strong aria-hidden="true">3.1.</strong> Chain state</a></li><li class="chapter-item expanded "><a href="../design/coins-view.html"><strong aria-hidden="true">3.2.</strong> &quot;Coins&quot; view</a></li><li class="chapter-item expanded "><a href="../design/p2p-data-propagation.html"><strong aria-hidden="true">3.3.</strong> P2P data propagation</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">zcashd</a></li><li class="chapter-item expanded "><a href="../user.html"><strong aria-hidden="true">1.</strong> User Documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user/release-support.html"><strong aria-hidden="true">1.1.</strong> Release Support</a></li><li class="chapter-item expanded "><a href="../user/platform-support.html"><strong aria-hidden="true">1.2.</strong> Platform Support</a></li><li class="chapter-item expanded "><a href="../user/wallet-backup.html"><strong aria-hidden="true">1.3.</strong> Wallet Backup</a></li><li class="chapter-item expanded "><a href="../user/shield-coinbase.html"><strong aria-hidden="true">1.4.</strong> Shielding Coinbase Outputs</a></li><li class="chapter-item expanded "><a href="../user/files.html"><strong aria-hidden="true">1.5.</strong> Data Directory Structure</a></li><li class="chapter-item expanded "><a href="../user/metrics.html" class="active"><strong aria-hidden="true">1.6.</strong> Metrics</a></li><li class="chapter-item expanded "><a href="../user/tor.html"><strong aria-hidden="true">1.7.</strong> Using zcashd with Tor</a></li><li class="chapter-item expanded "><a href="../user/security-warnings.html"><strong aria-hidden="true">1.8.</strong> Security Warnings</a></li><li class="chapter-item expanded "><a href="../user/deprecation.html"><strong aria-hidden="true">1.9.</strong> Deprecated Features</a></li></ol></li><li class="chapter-item expanded "><a href="../dev.html"><strong aria-hidden="true">2.</strong> Developer Documentation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../dev/dnsseed-policy.html"><strong aria-hidden="true">2.1.</strong> DNS Seeders</a></li><li class="chapter-item expanded "><a href="../dev/rust.html"><strong aria-hidden="true">2.2.</strong> Rust in zcashd</a></li><li class="chapter-item expanded "><a href="../dev/regtest.html"><strong aria-hidden="true">2.3.</strong> Regtest Tips And Hints</a></li><li class="chapter-item expanded "><a href="../dev/platform-tier-policy.html"><strong aria-hidden="true">2.4.</strong> Platform Tier Policy</a></li><li class="chapter-item expanded "><a href="../dev/deprecation.html"><strong aria-hidden="true">2.5.</strong> Deprecation Procedure</a></li></ol></li><li class="chapter-item expanded "><a href="../design.html"><strong aria-hidden="true">3.</strong> Design</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../design/chain-state.html"><strong aria-hidden="true">3.1.</strong> Chain State</a></li><li class="chapter-item expanded "><a href="../design/coins-view.html"><strong aria-hidden="true">3.2.</strong> "Coins" View</a></li><li class="chapter-item expanded "><a href="../design/p2p-data-propagation.html"><strong aria-hidden="true">3.3.</strong> P2P Data Propagation</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -83,7 +91,7 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
+                                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -93,7 +101,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -110,6 +118,7 @@
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+
                     </div>
                 </div>
 
@@ -123,8 +132,9 @@
                         </ul>
                     </div>
                 </div>
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -189,13 +199,52 @@ zcash_chain_verified_block_total 162
 ...
 </code></pre>
 <p>By default, access is restricted to localhost. This can be expanded with
-<code>-metricsallowip=&lt;ip&gt;</code>, which can specify IPs or subnets. Note that HTTPS is not
-supported, and therefore connections to the endpoint are not encrypted or
+<code>-metricsallowip=&lt;ip&gt;</code>, which can specify IPs or subnets. Note that HTTPS is
+not supported, and therefore connections to the endpoint are not encrypted or
 authenticated. Access to the endpoint should be assumed to compromise the
 privacy of node operations, by the provided metrics and/or by timing side
 channels. Non-localhost access is <strong>strongly discouraged</strong> if the node has a
 wallet holding live funds.</p>
-<h3 id="example-metrics-collection-with-docker"><a class="header" href="#example-metrics-collection-with-docker">Example metrics collection with Docker</a></h3>
+<h3 id="metrics-collection-with-docker"><a class="header" href="#metrics-collection-with-docker">Metrics collection with Docker</a></h3>
+<p>A docker-compose.yml has been provided in <code>./contrib/metrics</code> that sets up
+local instances of <code>prometheus</code> and <code>grafana</code> and provides a dashboard that
+charts several of the various metrics exposed by <code>zcashd</code>'s <code>prometheus</code>
+endpoint. Note that both <code>docker</code> and <code>docker-compose</code> must ordinarily be run
+with superuser permissions (use <code>sudo</code>) when running on Linux.</p>
+<p><code>docker-compose up</code><sup class="footnote-reference"><a href="#1">1</a></sup> will start local instances of <code>prometheus</code> and <code>grafana</code>,
+accessible over HTTP on ports <code>9090</code> and <code>3030</code>, respectively. </p>
+<pre><code>cd &lt;zcash_root&gt;/contrib/metrics
+docker-compose up -d
+</code></pre>
+<p>(substitute the root directory where you have checked out the <code>zcash</code> git
+repository for <code>&lt;zcash_root&gt;</code>)</p>
+<p><code>~/.zcash/zcash.conf</code> must be updated to enable <code>prometheus</code> and to allow the
+<code>prometheus</code> server launched via <code>docker-compose</code> to connect to the <code>zcashd</code>
+prometheus endpoint. The following commands can be used to detect the local IP
+address for the <code>prometheus</code> server and add it to the <code>~/.zcash/zcash.conf</code> 
+file. </p>
+<p>First, figure out where <code>prometheus</code> is running.</p>
+<pre><code>export PROMETHEUS_DOCKER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' zcashd-prometheus)
+</code></pre>
+<p>Then, update your <code>~/.zcash/zcash.conf</code> file to open port <code>9969</code> and allow
+connections from the <code>zcashd-prometheus</code> docker container.</p>
+<pre><code>cat &lt;&lt; PROM_CONF &gt;&gt; ~/.zcash/zcash.conf
+prometheusport=9969
+metricsallowip=$PROMETHEUS_DOCKER_IP/32
+PROM_CONF
+</code></pre>
+<p>You may then (re)start <code>zcashd</code> and navigate to
+<a href="http://localhost:9090/targets?search=">http://localhost:9090/targets?search=</a>
+to verify that the <code>prometheus</code> server is able to connect to the <code>zcashd</code>
+prometheus endpoint; you should see the host
+<code>http://host.docker.internal:9969/</code> having <code>UP</code> status. Once this is working,
+navigate to
+<a href="http://localhost:3030/d/U4U58t-Gk/zcashd-metrics">http://localhost:3030/d/U4U58t-Gk/zcashd-metrics</a>
+to view the dashboard. The username and password for this local grafana
+instance are set by default to <code>admin</code>/<code>admin</code>; the UI will ask you to change
+this on first use. Data gathered by the running prometheus instance and changes
+that you make to the grafana interface will be persisted across restarts.</p>
+<h4 id="manual-docker-setup-without-docker-compose"><a class="header" href="#manual-docker-setup-without-docker-compose">Manual Docker Setup Without docker-compose</a></h4>
 <p>The example instructions below were tested on Windows 10 using Docker Desktop
 with the WSL 2 backend, connected to a <code>zcashd</code> running inside WSL2 (but not
 inside Docker):</p>
@@ -206,51 +255,67 @@ docker volume create grafana-storage
 docker volume create prometheus-storage
 
 # Run Prometheus
-# You will need to modify ~/contrib/metrics/prometheus.yaml to match the
+# You will need to modify $(zcash_root)/contrib/metrics/prometheus.yaml to match the
 # port configured with -prometheusport and -metricsbind / -metricsallowip
 # (and possibly also for your Docker network setup).
-docker run --detach -p 9090:9090 --volume prometheus-storage:/prometheus --volume ~/contrib/metrics/prometheus.yaml:/etc/prometheus/prometheus.yml  prom/prometheus
+docker run --detach -p 9090:9090 --volume prometheus-storage:/prometheus --volume $(zcash_root)/contrib/metrics/prometheus.yaml:/etc/prometheus/prometheus.yml  prom/prometheus
 
 # Run Grafana
 docker run --detach -p 3030:3030 --env GF_SERVER_HTTP_PORT=3030 --volume grafana-storage:/var/lib/grafana grafana/grafana
 </code></pre>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>This requires a running Docker daemon. See <a href="https://docs.docker.com/config/daemon/start/">the relevant section of the
+Docker Engine manual</a>.</p>
+</div>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../user.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../user/files.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="../dev.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+
+                            <a rel="next" href="../user/tor.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../user.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../user/files.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="../dev.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+
+                    <a rel="next" href="../user/tor.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
-        <script type="text/javascript">
+
+
+
+        <script>
             window.playground_copyable = true;
         </script>
-        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
+
+
+    </div>
     </body>
 </html>
