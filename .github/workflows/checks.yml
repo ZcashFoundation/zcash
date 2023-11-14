@@ -34,7 +34,7 @@ jobs:
 
       - name: Avoid running Tekton CI if it would provably fail
         if: failure() && steps.tekton.outcome == 'failure'
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             github.rest.issues.removeLabel({
